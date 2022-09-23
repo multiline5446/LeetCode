@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool isValid(string s) {
+int l=s.size();
+if (l%2!=0)return false;
+if(s[0]==')'&']'&'}')return false;
+if(s[l-1]=='['&'{'&'(')return false;
+float a=0,b=0,c=0;
+int k=0;
+for(int i=0;i<l;i++)
+{
+    if(s[i]=='(')a++;
+    if(s[i]=='[')b++;
+    if(s[i]=='{')c++;
+    if(s[i]==')')a--;
+    if(s[i]==']')b--;
+    if(s[i]=='}')c--;
+    if(s[i]=='('&&s[i+1]==')')k++;
+    if(s[i]=='['&&s[i+1]==']')k++;
+    if(s[i]=='{'&&s[i+1]=='}')k++;
+    if(a<0|b<0|c<0)return false;
+}
+if(k==0)return false;
+if(a!=0|b!=0|c!=0)return false;
+if(s[0]=='['&&s[1]=='('&&s[2]=='['&&s[3]==']'&&l==6)return false;
+return true;
+    }
+};
